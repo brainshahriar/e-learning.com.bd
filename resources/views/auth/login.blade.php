@@ -47,7 +47,7 @@
                     <div>
                         <div class="s12 log-ch-bx">
                             <p>
-                                <input type="checkbox" id="remember" {{ old('remember') ? 'checked' : '' }}/>
+                                <input type="checkbox" id="test5" id="remember" old('remember') ? 'checked' : '' }}/>
                                 <label for="test5">Remember me</label>
                             </p>
                         </div>

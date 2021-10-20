@@ -27,9 +27,15 @@
                 <div class="pro-user">
                     <img src="{{ Auth::user()->image }}" class="profile_picture" alt="user">
                     <input type="file" name="image" id="image" style="opacity:0;height:1px;display:none">
-                    <a href="javascript:void(0)" class="btn btn-primary btn-lock" id="change_image"><b>Change Image</b></a>
+                    <div class="text-center">
+                        <a href="javascript:void(0)" class="btn btn-primary btn-lock" id="change_image"><b>Change Image</b></a>
+                       <br><br>
+                        <a href="javascript:void(0)" class="btn btn-danger"  data-toggle="modal" data-target="#ChangePassword"><b>Change Password</b></a>
+                    </div>
 
                 </div>
+                @include('frontend.modals.change-password')
+
                 <div class="pro-user-bio">
                     <ul>
                         <li>

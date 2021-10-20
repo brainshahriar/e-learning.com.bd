@@ -17,12 +17,13 @@ class UserController extends Controller
     //profile picture
     public function updatePicture(Request $request)
     {
-        $path='frontend/images/profile_image/';
-        $file=$request->file('image');
-        $new_name='UIMG_'.date('Ymd').uniqid().'.jpg';
+        $path = 'frontend/images/profile/';
+        $file = $request->file('image');
+        $new_name = '/'.'UIMG_'.date('Ymd').uniqid().'.jpg';
 
-        //upload
-        $upload=$file->move(public_path($path,$new_name));
+        //Upload new image
+        $upload = $file->move(public_path($path), $new_name);
+        
         if( !$upload ){
             return response()->json(['status'=>0,'msg'=>'Something went wrong, upload new picture failed.']);
         }else{

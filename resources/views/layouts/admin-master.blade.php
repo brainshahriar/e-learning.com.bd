@@ -91,7 +91,6 @@
                 </div>
                 <!--== LEFT MENU ==-->
              @include('admin.inc.leftbar')  
-             / 
             </div>
 
 

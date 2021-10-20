@@ -561,39 +561,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('common') }}/imagecrop/ijaboCropTool.min.js"></script>
 
-    <script type="text/javascript">
+    <script>
         $.ajaxSetup({
-            headers:
-            {
-                'X-CSRF-TOKEN':$('meta[name="csrf_token"]').attr('content')
-            }
+           headers:{
+             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+           }
         });
-        //profile image
-        $(document).on('click','#change_image',function()
-        {
-            $('#image').click();
-        });
+        
+        $(function(){
+          /* UPDATE ADMIN PERSONAL INFO */
 
-        $('#image').ijaboCropTool({
-          preview : '.profile_picture',
-          setRatio:1,
-          allowedExtensions: ['jpg', 'jpeg','png'],
-          buttonsText:['CROP','QUIT'],
-          buttonsColor:['#30bf7d','#ee5155', -15],
-          processUrl:'{{ route("profile-picture-update") }}',
-          withCSRF:['_token','{{ csrf_token() }}'],
-          onSuccess:function(message, element, status){
-             alert(message);
-          },
-          onError:function(message, element, status){
-            alert(message);
-          }
-       });
-        
-        
-        
-        
-    </script>
+          $(document).on('click','#change_image', function(){
+            $('#image').click();
+          });
+          $('#image').ijaboCropTool({
+                preview : '.profile_picture',
+                setRatio:1,
+                allowedExtensions: ['jpg', 'jpeg','png'],
+                buttonsText:['CROP','QUIT'],
+                buttonsColor:['#30bf7d','#ee5155', -15],
+                processUrl:'{{ route("profile-picture-update") }}',
+                // withCSRF:['_token','{{ csrf_token() }}'],
+                onSuccess:function(message, element, status){
+                   alert(message);
+                },
+                onError:function(message, element, status){
+                  alert(message);
+                }
+             });
+
+          
+        });
+      </script>
 </body>
 
 </html>

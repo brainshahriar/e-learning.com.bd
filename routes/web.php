@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+
 use App\Http\Controllers\User\UserController;
 
 use App\Http\Controllers\Frontend\IndexController;
@@ -28,6 +30,10 @@ Auth::routes();
 //admin routes
 Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Admin'], function(){
     Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
+    //categories
+    Route::get('categories',[CategoryController::class,'index'])->name('categories');
+    Route::post('category/store',[CategoryController::class,'store'])->name('category-store');
+
 });
 
 
