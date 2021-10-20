@@ -34,6 +34,9 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
 //user routes
 Route::group(['prefix'=>'user','middleware' =>['user','auth'],'namespace'=>'User'], function(){
     Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard');
+
+    Route::post('change-profile-picture',[UserController::class,'updatePicture'])->name('profile-picture-update');
+
 });
 
 //frontend routes

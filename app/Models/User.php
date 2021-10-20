@@ -20,6 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'image',
         'password',
         'role_id',
     ];
@@ -42,6 +44,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getImageAttribute($value){
+        if($value){
+            return asset('frontend/images/profile_image'.$value);
+        }else{
+            return asset('frontend/images/profile_image/profile.png');
+        }
+    }
+
     public function role()
     {
         return $this->belongsTo('App\Models\Role');
