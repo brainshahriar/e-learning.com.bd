@@ -12,8 +12,7 @@
                     <input type="hidden" name="id" value="{{ $category->id }}">
                     <div>
                         <div class="input-field s12">
-                            <input type="text" data-ng-model="name"  name="category_name" value="{{ $category->category_name_ }}">
-                            <label>{{ $category->category_name }}</label>
+                            <input type="text" data-ng-model="name"  name="category_name" value="{{ $category->category_name}}">
                             @error('category_name')
                             <span class="invalid-feedback" role="alert">
                                 <strong class="text-danger">{{ $message }}</strong>
@@ -23,8 +22,8 @@
                     </div>
                     <div>
                         <div class="input-field s4">
-                            <input type="submit" value="Update" class="waves-effect waves-light log-in-btn"> 
-                        </div>
+                            <button type="submit" class="btn btn-primary">Save changes</button>     
+                         </div>
                     </div>
                 </form>
             </div>

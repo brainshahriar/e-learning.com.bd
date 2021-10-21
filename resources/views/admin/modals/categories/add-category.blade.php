@@ -22,8 +22,8 @@
                     </div>
                     <div>
                         <div class="input-field s4">
-                            <input type="submit" value="Create" class="waves-effect waves-light log-in-btn"> 
-                        </div>
+                            <button type="submit" class="btn btn-primary">Create</button>     
+                         </div>
                     </div>
                 </form>
             </div>

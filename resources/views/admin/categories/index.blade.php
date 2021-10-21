@@ -45,8 +45,8 @@ active
                                         </td>
                                         <td>{{ $category->category_name }}</td>
                                         <td>
-                                            <a href="" class="btn btn-primary" title="Edit Data" data-toggle="modal" data-target="#EditCategory{{ $category->id }}">Edit</a>
-                                            <a href="" class="btn btn-danger" title="delete data" id="delete">Delete</a>
+                                            <a  class="btn btn-primary" title="Edit Data" data-toggle="modal" data-target="#EditCategory{{ $category->id }}">Edit</a>
+                                            <a href="{{ url('admin/category/delete/'.$category->id) }}" id="delete" class="btn btn-danger" title="delete data" id="delete">Delete</a>
                                         </td>
                                         @include('admin.modals.categories.edit-category')
                                     </tr>

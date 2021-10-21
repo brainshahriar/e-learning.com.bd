@@ -36,7 +36,7 @@ class CategoryController extends Controller
         $request->validate([
             'category_name'=>'required|unique:categories,category_name',
         ]);
-        
+        $category_id = $request->id;
         Category::findOrFail($category_id)->Update([
             'category_name' => $request->category_name,
             'category_slug' => strtolower(str_replace(' ','-',$request->category_name)),
@@ -47,6 +47,15 @@ class CategoryController extends Controller
             'message'=>'Catetory Update Success',
             'alert-type'=>'success'
         );
-        return Redirect()->route('category')->with($notification);
+        return Redirect()->back()->with($notification);
     }
+    public function delete($category_id){
+        Category::findOrFail($category_id)->delete();
+            $notification=array(
+            'message'=>'Category Delete Success',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
 }
