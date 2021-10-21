@@ -22,6 +22,8 @@
     <link href="{{ asset('backend') }}/css/style.css" rel="stylesheet" />
     <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
     <link href="{{ asset('backend') }}/css/style-mob.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('backend') }}/lib/toastr/toastr.css">
+    <link href="{{asset('backend')}}/lib/datatables/jquery.dataTables.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -103,6 +105,48 @@
     <script src="{{ asset('backend') }}/js/bootstrap.min.js"></script>
     <script src="{{ asset('backend') }}/js/materialize.min.js"></script>
     <script src="{{ asset('backend') }}/js/custom.js"></script>
+    <script src="{{asset('backend')}}/lib/datatables/jquery.dataTables.js"></script>
+    <script src="{{asset('backend')}}/lib/datatables-responsive/dataTables.responsive.js"></script>
+    <script>
+        $(function(){
+          'use strict';
+          $('#datatable1').DataTable({
+            responsive: true,
+            language: {
+              searchPlaceholder: 'Search...',
+              sSearch: '',
+             // lengthMenu: '_MENU_ items/page',
+            }
+          });
+          // $('#datatable2').DataTable({
+          //   bLengthChange: false,
+          //   searching: false,
+          //   responsive: true
+          // });
+          // Select2
+          // $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+        });
+      </script>
+    <script type="text/javascript" src="{{ asset('backend') }}/lib/toastr/toastr.min.js"></script>
+    <script>
+        @if(Session::has('message'))
+        var type="{{ Session::get('alert-type','info') }}"
+        switch(type){
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+                case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+                case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+                case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;         
+        }
+        @endif
+    </script>
 </body>
 
 

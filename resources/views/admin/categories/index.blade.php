@@ -4,58 +4,65 @@
 active
 @endsection    
 
-                <!--== BODY INNER CONTAINER ==-->
+
+
 <div class="sb2-2">
-<!--== breadcrumbs ==-->
-
-<!--== DASHBOARD INFO ==-->
-
-<div class="row">
-<div class="col-md-12 col-sm-12 col-xs-12">
-<div class="dashboard_graph">
-                    
-
-<div class="col-md-12 col-sm-12 col-xs-12">
-<div class="x_panel">
-    <div class="x_title">
-        <h2><i class="fa fa-align-left"></i> Category List </h2> 
-        <button type="button" class="btn btn-primary pull-right"  data-toggle="modal" data-target="#AddCategory">Add New</button>
-        @include('admin.modals.categories.add-category')
+    <!--== breadcrumbs ==-->
+    <div class="sb2-2-2">
+        <ul>
+            <li><a href="index-2.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+            </li>
+            <li class="active-bre"><a href="#"> Categories</a>
+            </li>
+            <button type="button" class="btn btn-primary pull-right"  data-toggle="modal" data-target="#AddCategory">Add New</button>
+            @include('admin.modals.categories.add-category')
+        </ul>
 
     </div>
-    <div class="x_content">
 
-        <!-- start accordion -->
-        <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="panel">
-                    <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne_1" aria-expanded="true" aria-controls="collapseOne">
-                        <h4 class="panel-title">1. IT Service Management</h4>
-                        
-                    <i onclick="EditCategory(1)" class="fa fa-pencil-square-o pull-right" aria-hidden="true" data-toggle="modal" data-target=".bs-example-modal-edit"></i>
-
-                    <i style="margin-left: -10px;" onclick="AddSubCategory('1', 'IT Service Management' )" id="category_name" parent="IT Service Management" class="fa fa-plus-circle pull-right" aria-hidden="true" data-toggle="modal" data-target=".add-category"></i>
-                                                            </a>
-                    <div id="collapseOne_1" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
-                        <div class="panel-body">
-                                             <h5>No found sub category</h5>
-                                
+    <div class="sb2-2-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box-inn-sp">
+                    <div class="inn-title">
+                        <h4>All Categories</h4>
+                    </div>
+                    <div class="tab-inn">
+                        <div class="table-responsive table-desi">
+                            <table class="table table-hover" id="datatable1">
+                                <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>Category</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($categories as $category)
+              
+                                    <tr>
+                                        <td>{{$loop->index+1}}</span>
+                                        </td>
+                                        <td>{{ $category->category_name }}</td>
+                                        <td>
+                                            <a href="" class="btn btn-primary" title="Edit Data" data-toggle="modal" data-target="#EditCategory{{ $category->id }}">Edit</a>
+                                            <a href="" class="btn btn-danger" title="delete data" id="delete">Delete</a>
+                                        </td>
+                                        @include('admin.modals.categories.edit-category')
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-
-            
+            </div>
         </div>
-        <!-- end of accordion -->
-
-
     </div>
-</div>
-</div>
+    
 
+ 
 
-<div class="clearfix"></div>
-</div>
-</div>
 
 </div>
 @endsection

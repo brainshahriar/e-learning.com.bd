@@ -22,7 +22,7 @@
                     </div>
                     <div>
                         <div class="input-field s4">
-                            <input type="submit" value="Add" class="waves-effect waves-light log-in-btn"> 
+                            <input type="submit" value="Create" class="waves-effect waves-light log-in-btn"> 
                         </div>
                     </div>
                 </form>
