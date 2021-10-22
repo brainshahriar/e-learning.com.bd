@@ -138,6 +138,13 @@
                                                         @endforeach
                                                     </ul>
                                                 </div>
+                                                <div class="mm1-com mm1-s4">
+                                                    <ul>
+                                                        @foreach ($subcategories as $subcategory)
+                                                        <li><a href="course-details.html">{{ $subcategory->subcategory_name }}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

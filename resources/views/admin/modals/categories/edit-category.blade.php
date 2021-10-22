@@ -23,7 +23,7 @@
                     <div>
                         <div class="input-field s4">
                             <button type="submit" class="btn btn-primary">Save changes</button>     
-                         </div>
+                             </div>
                     </div>
                 </form>
             </div>

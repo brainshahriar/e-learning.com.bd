@@ -30,19 +30,10 @@
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-    <link href="{{asset('backend')}}/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="{{asset('backend')}}/lib/Ionicons/css/ionicons.css" rel="stylesheet">
-    <link href="{{asset('backend')}}/lib/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
-    <link href="{{asset('backend')}}/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
-    <link href="{{asset('backend')}}/lib/datatables/jquery.dataTables.css" rel="stylesheet">
     <link href="{{asset('backend')}}/lib/select2/css/select2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('backend') }}/lib/toastr/toastr.css">
     <link href="{{asset('backend')}}/lib/highlightjs/github.css" rel="stylesheet">
     <link href="{{asset('backend')}}/lib/spectrum/spectrum.css" rel="stylesheet">
-    <link href="{{asset('backend')}}/lib/summernote/summernote-bs4.css" rel="stylesheet">
     <!-- Starlight CSS -->
-    <link rel="stylesheet" href="{{asset('backend')}}/css/starlight.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-typeahead.css" integrity="sha512-wu4jn1tktzX0SHl5qNLDtx1uRPSj+pm9dDgqsrYUS16AqwzfdEmh1JR8IQL7h+phL/EAHpbBkISl5HXiZqxBlQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -196,66 +187,7 @@
         // $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
       });
     </script>
-    <script src="{{asset('backend')}}/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
-    <script src="{{asset('backend')}}/lib/d3/d3.js"></script>
-    <script src="{{asset('backend')}}/lib/rickshaw/rickshaw.min.js"></script>
-    <script src="{{asset('backend')}}/lib/chart.js/Chart.js"></script>
-    <script src="{{asset('backend')}}/lib/Flot/jquery.flot.js"></script>
-    <script src="{{asset('backend')}}/lib/Flot/jquery.flot.pie.js"></script>
-    <script src="{{asset('backend')}}/lib/Flot/jquery.flot.resize.js"></script>
-    <script src="{{asset('backend')}}/lib/flot-spline/jquery.flot.spline.js"></script>
-    <script src="{{ asset('backend') }}/lib/summernote/summernote-bs4.min.js"></script>
-    <script src="{{ asset('backend') }}/lib/tagsinput/bootstrap-tagsinput.min.js"></script>
-    <script>
-      $(function(){
-        'use strict';
-        // Summernote editor
-        $('#summernote').summernote({
-          height: 150,
-          tooltip: false
-        })
-        $('#summernote2').summernote({
-          height: 150,
-          tooltip: false
-        })
-        $('#summernote3').summernote({
-          height: 150,
-          tooltip: false
-        })
-        $('#summernote4').summernote({
-          height: 150,
-          tooltip: false
-        })
-      });
-    </script>
-    <script src="{{asset('backend')}}/js/starlight.js"></script>
-    <script src="{{asset('backend')}}/js/ResizeSensor.js"></script>
-    <script src="{{asset('backend')}}/js/dashboard.js"></script>
-    <script src="{{asset('backend')}}/lib/highlightjs/highlight.pack.js"></script>
 
-
-    <script type="text/javascript" src="{{ asset('backend') }}/lib/toastr/toastr.min.js"></script>
-    <script>
-        @if(Session::has('message'))
-        var type="{{ Session::get('alert-type','info') }}"
-        switch(type){
-            case 'info':
-                toastr.info("{{ Session::get('message') }}");
-                break;
-                case 'success':
-                toastr.success("{{ Session::get('message') }}");
-                break;
-                case 'warning':
-                toastr.warning("{{ Session::get('message') }}");
-                break;
-                case 'error':
-                toastr.error("{{ Session::get('message') }}");
-                break;         
-        }
-        @endif
-    </script>
-<script src="{{ asset('backend') }}/lib/sweetalert/sweetalert.min.js"></script>
-<script src="{{ asset('backend') }}/lib/sweetalert/code.js"></script>
     
 </body>
 

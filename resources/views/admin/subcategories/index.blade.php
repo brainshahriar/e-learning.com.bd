@@ -14,8 +14,6 @@ active
             </li>
             <li class="active-bre"><a href="#">Categories</a>
             </li>
-            <button type="button" class="btn btn-primary pull-right"  data-toggle="modal" data-target="#AddSubcategory">Add New</button>
-            @include('admin.modals.subcategories.add-subcategory')
         </ul>
 
     </div>
@@ -25,7 +23,7 @@ active
             <div class="col-md-8">
                 <div class="box-inn-sp">
                     <div class="inn-title">
-                        <h4>All Subategories</h4>
+                        <h4>All Sub-Categories</h4>
                     </div>
                     <div class="tab-inn">
                         <div class="table-responsive table-desi">
@@ -33,6 +31,7 @@ active
                                 <thead>
                                     <tr>
                                         <th>SL</th>
+                                        <th>Category</th>
                                         <th>SubCategory</th>
                                         <th>Action</th>
                                     </tr>
@@ -43,12 +42,12 @@ active
                                     <tr>
                                         <td>{{$loop->index+1}}</span>
                                         </td>
+                                        <td>{{ $subcategory->category->category_name }}</td>
                                         <td>{{ $subcategory->subcategory_name }}</td>
                                         <td>
-                                            <a  class="btn btn-primary" title="Edit Data" data-toggle="modal" data-target="#EditSubategory{{ $subcategory->id }}">Edit</a>
-                                            <a href="{{ url('admin/category/delete/'.$subcategory->id) }}" id="delete" class="btn btn-danger" title="delete data" id="delete">Delete</a>
+                                            <a  href="{{ url('admin/subcategory/edit/'.$subcategory->id) }}" class="btn btn-primary" title="Edit Data">Edit</a>
+                                            <a href="{{ url('admin/subcategory/delete/'.$subcategory->id) }}" id="delete" class="btn btn-danger" title="delete data" id="delete">Delete</a>
                                         </td>
-                                        @include('admin.modals.subcategories.edit-subcategory')
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -63,18 +62,19 @@ active
                         <h4>Add Sub-Categories</h4>
                     </div>
                  <div class="tab-inn">
-                        <form action="" method="POST">
+                        <form action="{{ route('subcategory-store') }}" method="POST">
                             @csrf
                 <div class="row">
                     <div class="input-field col s12">
-                <select class="form-control select2-show-search" data-placeholder="Choose one (with searchbox)">
+                <select class="form-control select2-show-search" data-placeholder="Select One" name="category_id">
                   <option label="Choose one"></option>
-                  <option value="Firefox">Firefox</option>
-                  <option value="Chrome">Chrome</option>
-                  <option value="Safari">Safari</option>
-                  <option value="Opera">Opera</option>
-                  <option value="Internet Explorer">Internet Explorer</option>
+                  @foreach ($categories as $category)    
+                  <option value="{{ $category->id }}">{{ ucwords($category->category_name) }}</option>
+                  @endforeach
                 </select>
+                @error('category_id')
+                <span class="text-danger">{{ $message }}</span>
+              @enderror
                     </div>
                 </div>
                             <br>
@@ -82,10 +82,10 @@ active
 
         
             <div class="form-group">
-                <input class="form-control" type="text" name="subcategory_name_en" value="{{ old('subcategory_name_en') }}" placeholder="Enter subcategory name en">
-                @error('subcategory_name_en')
+                <input class="form-control" type="text" name="subcategory_name" value="{{ old('subcategory_name') }}" placeholder="Enter subcategory name ">
+                @error('subcategory_name')
                 <span class="text-danger">{{ $message }}</span>
-            @enderror
+                @enderror
             </div>
         
         
