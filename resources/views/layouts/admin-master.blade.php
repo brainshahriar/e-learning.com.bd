@@ -166,6 +166,7 @@
     <script src="{{asset('backend')}}/lib/select2/js/select2.min.js"></script>
     <script src="{{asset('backend')}}/lib/spectrum/spectrum.js"></script>
     <script src="{{ asset('backend') }}/lib/categorysearch/code.js"></script>
+    <link href="{{asset('backend')}}/lib/summernote/summernote-bs4.css" rel="stylesheet">
     
     <script>
       $(function(){
@@ -187,6 +188,29 @@
         // $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
       });
     </script>
+     <script src="{{ asset('backend') }}/lib/summernote/summernote-bs4.min.js"></script>
+    <script>
+      $(function(){
+        'use strict';
+        // Summernote editor
+        $('#summernote').summernote({
+          height: 70,
+          tooltip: false
+        })
+        $('#summernote2').summernote({
+          height: 150,
+          tooltip: false
+        })
+        $('#summernote3').summernote({
+          height: 150,
+          tooltip: false
+        })
+        $('#summernote4').summernote({
+          height: 150,
+          tooltip: false
+        })
+      });
+      </script>
 
     
 </body>

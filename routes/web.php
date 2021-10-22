@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CourseController;
 
 use App\Http\Controllers\User\UserController;
 
@@ -41,6 +42,14 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     Route::get('subcategory/edit/{subcategory_id}',[CategoryController::class,'editSubcategory']);
     Route::post('subcategory/update',[CategoryController::class,'updateSubcategory'])->name('subcategory-update');
     Route::get('subcategory/delete/{subcategory_id}',[CategoryController::class,'deleteSubcategory']);
+    //course
+    Route::get('course',[CourseController::class,'indexCourse'])->name('course');
+    Route::get('create',[CourseController::class,'create'])->name('create');
+
+    Route::get('subcategory/ajax/{category_id}',[CourseController::class,'getSubCategory']);
+
+    Route::post('store',[CourseController::class,'storeCourse'])->name('course-store');
+
 
 
 });
