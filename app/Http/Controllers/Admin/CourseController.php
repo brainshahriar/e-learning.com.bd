@@ -59,4 +59,31 @@ class CourseController extends Controller
         );
         return Redirect()->route('course')->with($notification);
     }
+    public function editCourse($course_id)
+    {
+        $courses=Course::findOrFail($course_id);
+        $categories = Category::latest()->get();
+        $subcategories=Subcategory::all();
+        return view('admin.course.edit',compact('courses','categories','subcategories'));
+        
+    }
+    //active inactive
+    public function inactive($id)
+    {
+        Course::findOrFail($id)->update(['status'=>0]);
+        $notification=array(
+            'message'=>'Inactivated',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+    public function active($id)
+    {
+        Course::findOrFail($id)->update(['status'=>1]);
+        $notification=array(
+            'message'=>'Ativated',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
 }

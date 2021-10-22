@@ -49,7 +49,11 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     Route::get('subcategory/ajax/{category_id}',[CourseController::class,'getSubCategory']);
 
     Route::post('store',[CourseController::class,'storeCourse'])->name('course-store');
+    Route::get('edit/{course_id}',[CourseController::class,'editCourse']);
 
+    //active inactive
+    Route::get('/inactive/{id}',[CourseController::class,'inactive']);
+    Route::get('/active/{id}',[CourseController::class,'active']);
 
 
 });

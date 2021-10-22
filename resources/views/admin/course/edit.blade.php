@@ -14,7 +14,7 @@ active
             <div class="col-md-12">
                 <div class="box-inn-sp">
                     <div class="inn-title">
-                        <h4>Add Courses</h4>
+                        <h4>Edit Courses</h4>
                     </div>
                  <div class="tab-inn">
                         <form action="{{ route('course-store') }}" method="POST" enctype="multipart/form-data">
@@ -23,8 +23,8 @@ active
                     <div class="input-field col s12">
                 <select class="form-control select2-show-search" data-placeholder="Select Category" name="category_id" data-validation="required">
                   <option label="Choose one"></option>
-                  @foreach ($categories as $category)    
-                  <option value="{{ $category->id }}">{{ ucwords($category->category_name) }}</option>
+                  @foreach ($categories as $category)
+                  <option value="{{ $category->id }}" {{ $category->id == $subcategories->category_id ? 'selected': '' }}>{{ ucwords($category->category_name) }}</option>
                   @endforeach
                 </select>
                 @error('category_id')

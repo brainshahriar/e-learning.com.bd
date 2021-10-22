@@ -40,19 +40,47 @@ active
                                         <th>Description</th>
                                         <th>Course Image</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($courses as $subcategory)
-              
+                                    @foreach ($courses as $course)
                                     <tr>
                                         <td>{{$loop->index+1}}</span>
                                         </td>
-                                        {{-- <td>{{ $subcategory->category->category_name }}</td> --}}
-                                        <td>{{ $subcategory->subcategory_name }}</td>
+                                        <td>{{ $course->category->category_name }}</td>
+                                        <td>{{ $course->subcategory->subcategory_name }}</td>
+                                        <td>{{ $course->course_name }}</td>
+                                        <td>{{ $course->selling_price }}</td>
+                                        <td>{{ $course->discount_price }}</td>
+                                        <td>{!! $course->short_descp  !!}</td>
                                         <td>
-                                            <a  href="{{ url('admin/subcategory/edit/'.$subcategory->id) }}" class="btn btn-primary" title="Edit Data">Edit</a>
-                                            <a href="{{ url('admin/subcategory/delete/'.$subcategory->id) }}" id="delete" class="btn btn-danger" title="delete data" id="delete">Delete</a>
+                                            @if($course->status==1)
+                  
+                                            <span class="label label-success">Active</span>
+                  
+                                            @else
+                  
+                                            <span class="label label-danger">Inactive</span>
+                  
+                                            @endif
+                                          </td>
+                                          <td>
+                                            <img src="{{ asset($course->course_image) }}" alt="" style="width: 80px">
+                                         </td>
+
+                                        <td>
+                                            @if($course->status==1)
+
+                                            <a href="{{ url('admin/inactive/'.$course->id) }}" class="btn btn-sm btn-danger" title="inactive">Inactive</a>
+                  
+                                            @else
+                  
+                                            <a href="{{ url('admin/active/'.$course->id) }}" class="btn btn-sm btn-success" title="active">Active</a>
+                  
+                                          @endif
+                                            <a  href="{{ url('admin/edit/'.$course->id) }}" class="btn btn-primary" title="Edit Data">Edit</a>
+                                            <a href="{{ url('admin/delete/'.$course->id) }}" id="delete" class="btn btn-danger" title="delete data" id="delete">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach

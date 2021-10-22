@@ -211,6 +211,12 @@
         })
       });
       </script>
+          <script type="text/javascript" src="{{ asset('common' )}}/jquery.form-validaton-min.js"></script>
+          <script>
+              $.validate({
+                  lang:'en'
+              });
+          </script>
 
     
 </body>
