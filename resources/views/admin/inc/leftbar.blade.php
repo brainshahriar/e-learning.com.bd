@@ -7,6 +7,8 @@
                 <ul>
                     <li><a href="{{ route('categories') }}" @yield('manage-categories')>Manage Categories</a>
                     </li>
+                    <li><a href="{{ route('subcategories') }}" @yield('manage-subcategories')>Manage Subategories</a>
+                    </li>
                 </ul>
             </div>
         </li>

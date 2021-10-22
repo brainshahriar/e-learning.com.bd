@@ -31,10 +31,13 @@ Auth::routes();
 Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Admin'], function(){
     Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
     //categories
-    Route::get('categories',[CategoryController::class,'index'])->name('categories');
+    Route::get('categories',[CategoryController::class,'indexCategory'])->name('categories');
     Route::post('category/store',[CategoryController::class,'store'])->name('category-store');
     Route::post('category/update',[CategoryController::class,'update'])->name('category-update');
     Route::get('category/delete/{category_id}',[CategoryController::class,'delete']);
+    //subcategory
+    Route::get('subcategories',[CategoryController::class,'indexSubcategory'])->name('subcategories');
+
 
 });
 
