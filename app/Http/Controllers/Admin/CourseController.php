@@ -67,6 +67,49 @@ class CourseController extends Controller
         return view('admin.course.edit',compact('courses','categories','subcategories'));
         
     }
+    //update course
+    public function updateCourse(Request $request)
+    {
+        $course_id = $request->course_id;
+        Course::findOrFail($course_id)->Update([
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'course_name' => $request->course_name,
+            'course_slug' => strtolower(str_replace(' ','-',$request->course_name)),
+            'selling_price' => $request->selling_price,
+            'discount_price' => $request->discount_price,
+            'short_descp' => $request->short_descp,
+            'status' => 1,
+            'updated_at' => Carbon::now(),
+           ]);
+
+           $notification=array(
+            'message'=>'Course Update Success',
+            'alert-type'=>'success'
+        );
+        return Redirect()->route('course')->with($notification);
+    }
+    //image update
+    public function updateImage(Request $request)
+    {
+        $course_id=$request->course_id;
+        $old_img=$request->old_img;
+        unlink($old_img);
+        $image = $request->file('course_image');
+        $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        Image::make($image)->resize(917,1000)->save('uploads/course/image/'.$name_gen);
+        $save_url = 'uploads/course/image/'.$name_gen;
+
+        Course::findOrFail($course_id)->update([
+            'course_image'=>$save_url,
+            'updated_at'=>Carbon::now(),
+        ]);
+        $notification=array(
+            'message'=>'Course Thambnail Update Success',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
     //active inactive
     public function inactive($id)
     {
@@ -86,4 +129,16 @@ class CourseController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+    public function deleteCourse($course_id)
+    {
+        $courses = Course::findOrFail($course_id);
+        unlink($courses->course_image);
+        Course::findOrFail($course_id)->delete();
+        $notification=array(
+            'message'=>'Course Deleted',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
 }

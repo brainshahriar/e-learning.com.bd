@@ -75,9 +75,6 @@ active
               <div class="form-group">
                 <label class="form-control-label">Image: <span class="tx-danger">*</span></label>
                 <input class="form-control" type="file" name="course_image"  onchange="CourseImage(this)" data-validation="required">
-                @error('course_image')
-                <span class="text-danger">{{ $message }}</span>
-              @enderror
               <img src="" id="mainThmb">
               </div>
                 <div class="form-layout-footer">

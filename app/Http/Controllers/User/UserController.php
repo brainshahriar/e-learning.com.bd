@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 use Auth;
 use Image;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\Course;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('user.home');
+        $categories=Category::all();
+        $subcategories=Subcategory::all();
+        $courses=Course::all();
+        return view('user.home',compact('categories','subcategories','courses'));
     }
     //profile picture
     public function updatePicture(Request $request)

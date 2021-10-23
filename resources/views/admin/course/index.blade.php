@@ -54,7 +54,11 @@ active
                                         <td>{{ $course->selling_price }}</td>
                                         <td>{{ $course->discount_price }}</td>
                                         <td>{!! $course->short_descp  !!}</td>
-                                        <td>
+                        
+                                          <td>
+                                            <img src="{{ asset($course->course_image) }}" alt="" style="width: 80px">
+                                         </td>
+                                         <td>
                                             @if($course->status==1)
                   
                                             <span class="label label-success">Active</span>
@@ -65,9 +69,6 @@ active
                   
                                             @endif
                                           </td>
-                                          <td>
-                                            <img src="{{ asset($course->course_image) }}" alt="" style="width: 80px">
-                                         </td>
 
                                         <td>
                                             @if($course->status==1)

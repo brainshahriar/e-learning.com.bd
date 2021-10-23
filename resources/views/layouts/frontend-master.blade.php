@@ -486,7 +486,8 @@
     </section>
 
     <!--Import jQuery before materialize.js-->
- 
+    <script src="{{ asset('frontend') }}/js/main.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
     <script src="{{ asset('frontend') }}/js/jquery-1.7.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('common') }}/imagecrop/ijaboCropTool.min.js"></script>
@@ -523,8 +524,7 @@
           
         });
       </script>
-         <script src="{{ asset('frontend') }}/js/main.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
+
     <script src="{{ asset('frontend') }}/js/materialize.min.js"></script>
     <script src="{{ asset('frontend') }}/js/custom.js"></script>
 </body>

@@ -160,16 +160,19 @@
             <div class="col-md-6">
                 <div>
                     <!--POPULAR COURSES-->
+                    @foreach ($courses as $course)
+                        
+               
                     <div class="home-top-cour">
                         <!--POPULAR COURSES IMAGE-->
-                        <div class="col-md-3"> <img src="{{ asset('frontend') }}/images/course/sm-1.jpg" alt=""> </div>
+                        <div class="col-md-3"> <img src="{{ asset() }}" alt=""> </div>
                         <!--POPULAR COURSES: CONTENT-->
                         <div class="col-md-9 home-top-cour-desc">
                             <a href="course-details.html">
-                                <h3>Aerospace Engineering</h3>
+                                <h3>{{ $course->course_name }}</h3>
                             </a>
-                            <h4>Technology / Space / Aerospace</h4>
-                            <p>Classes started from coming friday(21 jun 2017),total seats 72 and available seats 10</p> <span class="home-top-cour-rat">4.2</span>
+                            <h4>{{ $course->subcategory->subcategory_name }}</h4>
+                            <p>{!! $course->short_descp !!}</p> <span class="home-top-cour-rat">4.2</span>
                             <div class="hom-list-share">
                                 <ul>
                                     <li><a href="course-details.html"><i class="fa fa-bar-chart" aria-hidden="true"></i> Book Now</a> </li>
@@ -179,6 +182,7 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                     <!--POPULAR COURSES-->
                     <div class="home-top-cour">
                         <!--POPULAR COURSES IMAGE-->

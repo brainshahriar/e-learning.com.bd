@@ -50,6 +50,9 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
 
     Route::post('store',[CourseController::class,'storeCourse'])->name('course-store');
     Route::get('edit/{course_id}',[CourseController::class,'editCourse']);
+    Route::post('course/update',[CourseController::class,'updateCourse'])->name('course-update');
+    Route::post('course/image/update',[CourseController::class,'updateImage'])->name('image-update');
+    Route::get('delete/{course_id}',[CourseController::class,'deleteCourse']);
 
     //active inactive
     Route::get('/inactive/{id}',[CourseController::class,'inactive']);
@@ -64,6 +67,7 @@ Route::group(['prefix'=>'user','middleware' =>['user','auth'],'namespace'=>'User
     Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard');
 
     Route::post('change-profile-picture',[UserController::class,'updatePicture'])->name('profile-picture-update');
+    Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard');
 
 });
 

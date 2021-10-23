@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Course;
 
 class IndexController extends Controller
 {
@@ -14,6 +15,7 @@ class IndexController extends Controller
     {
         $categories=Category::all();
         $subcategories=Subcategory::all();
-        return view('frontend.index',compact('categories','subcategories'));
+        $courses=Course::all();
+        return view('frontend.index',compact('categories','subcategories','courses'));
     }
 }
