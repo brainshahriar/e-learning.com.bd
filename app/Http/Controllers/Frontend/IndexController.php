@@ -13,9 +13,9 @@ class IndexController extends Controller
     //index page
     public function index()
     {
-        $categories=Category::all();
-        $subcategories=Subcategory::all();
-        $courses=Course::all();
+        $categories=Category::orderBy('category_name','ASC')->get();
+        $subcategories=Subcategory::orderBy('subcategory_name','DESC')->get();
+        $courses=Course::where('status',1)->orderBy('id','DESC')->get();
         return view('frontend.index',compact('categories','subcategories','courses'));
     }
 }
