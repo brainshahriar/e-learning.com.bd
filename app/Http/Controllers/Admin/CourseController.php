@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Section;
 use Image;
 use Carbon\Carbon;
 
@@ -136,6 +137,25 @@ class CourseController extends Controller
         Course::findOrFail($course_id)->delete();
         $notification=array(
             'message'=>'Course Deleted',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+    public function lesson($course_id)
+    {
+        $courses=Course::where('id',$course_id)->first();
+        return view('admin.course.add-curriculum',compact('courses'));
+    }
+    public function sectionStore(Request $request)
+    {
+        Section::insert([
+            'course_id'=>$request->course_id,
+            'serial'=>$request->serial,
+            'section_name'=>$request->section_name,
+            'created_at'=>Carbon::now(),
+        ]);
+        $notification=array(
+            'message'=>'Section Created',
             'alert-type'=>'success'
         );
         return Redirect()->back()->with($notification);

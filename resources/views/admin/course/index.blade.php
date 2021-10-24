@@ -5,7 +5,6 @@ active
 @endsection    
 
 
-
 <div class="sb2-2">
     <!--== breadcrumbs ==-->
     <div class="sb2-2-2">
@@ -81,7 +80,8 @@ active
                   
                                           @endif
                                             <a  href="{{ url('admin/edit/'.$course->id) }}" class="btn btn-primary" title="Edit Data">Edit</a>
-                                            <a href="{{ url('admin/delete/'.$course->id) }}" id="delete" class="btn btn-danger" title="delete data" id="delete">Delete</a>
+                                            <a href="{{ url('admin/delete/'.$course->id) }}"  class="btn btn-danger" title="delete data" id="delete">Delete</a>
+                                            <a href="{{ url('admin/lesson/'.$course->id) }}"  class="btn btn-primary btn-sm" title="Add Lesson" >Lesson</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -93,11 +93,6 @@ active
             </div>
         </div>
     </div>
-    
-
- 
-
-
 </div>
 @endsection
 
