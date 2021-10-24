@@ -143,14 +143,16 @@ class CourseController extends Controller
     }
     public function lesson($course_id)
     {
+        $sections=Section::all();
         $courses=Course::where('id',$course_id)->first();
-        return view('admin.course.add-curriculum',compact('courses'));
+        return view('admin.course.add-curriculum',compact('courses','sections'));
     }
     public function sectionStore(Request $request)
     {
         Section::insert([
             'course_id'=>$request->course_id,
             'serial'=>$request->serial,
+            'duration'=>$request->duration,
             'section_name'=>$request->section_name,
             'created_at'=>Carbon::now(),
         ]);
