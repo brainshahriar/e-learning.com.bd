@@ -58,9 +58,12 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     Route::get('/inactive/{id}',[CourseController::class,'inactive']);
     Route::get('/active/{id}',[CourseController::class,'active']);
 
-    //lesson
+    //section
     Route::get('lesson/{course_id}',[CourseController::class,'lesson']);
     Route::post('section',[CourseController::class,'sectionStore'])->name('section-store');
+    Route::get('delete/{course_id}',[CourseController::class,'deleteSection']);
+    //lesson
+    Route::post('lesson/store',[CourseController::class,'lessonStore'])->name('lesson-store');
 
 
 });

@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Section;
+use App\Models\Lesson;
 use Image;
 use Carbon\Carbon;
 
@@ -143,7 +144,8 @@ class CourseController extends Controller
     }
     public function lesson($course_id)
     {
-        $sections=Section::all();
+       
+        $sections=Section::where('course_id',$course_id)->get();
         $courses=Course::where('id',$course_id)->first();
         return view('admin.course.add-curriculum',compact('courses','sections'));
     }
@@ -158,6 +160,34 @@ class CourseController extends Controller
         ]);
         $notification=array(
             'message'=>'Section Created',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+    public function deleteSection($section_id){
+        Section::findOrFail($section_id)->delete();
+            $notification=array(
+            'message'=>'Section Delete Success',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+    //store lesson
+    public function lessonStore(Request $request)
+    {
+        Lesson::insert([
+            'course_id' => $request->course_id,
+            'section_id' => $request->section_id,
+            'video_type' => $request->video_type,
+            'lesson_title' =>$request->lesson_title,
+            'video_id' =>$request->video_id,
+            'duration' =>$request->duration,
+            'preview' =>$request->preview,
+            'created_at' => Carbon::now(),
+           ]);
+
+           $notification=array(
+            'message'=>'Sub Catetory Added Success',
             'alert-type'=>'success'
         );
         return Redirect()->back()->with($notification);
