@@ -81,10 +81,7 @@ color: #222;
 </div>
 
     <div class="col-md-12">
-@php
-    $lessons=App\Models\Lesson::where('id',$section->id)->get();
-@endphp
-{{ dd($lessons) }}
+
   @foreach ($sections as $section)
 
         <div class="accordion" id="faq">
@@ -100,20 +97,23 @@ color: #222;
                 <button type="button" class="btn btn-success pull-right"  data-toggle="modal" data-target="#AddLession{{ $section->id }}">ADD</button>
                 </div>
                 @include('admin.modals.lesson.add-lesson')
-
+                @foreach ($lessons as $lesson)
                 <div id="faq1" class="collapse show" aria-labelledby="faqhead1" data-parent="#faq">
                     <div class="card-body">
                         <div class="card-header" id="faqhead1">
                             <a href="#" class="btn btn-success" data-toggle="collapse" data-target="#faq1"
                             aria-expanded="true" aria-controls="faq1">
                         
-                            1.video
+                        
+                               {{ $lesson->lesson_title }}
+                       
 
                         </a>
                         <button type="button" class="btn btn-danger pull-right"  data-toggle="modal" data-target="#AddLession">Delete</button>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
                     
