@@ -9,7 +9,7 @@
                 <h4>Add New Section</h4>
                 <form class="s12" method="POST" action="{{ route('section-store') }}">
                     @csrf
-                    <input type="hidden" name="course_id" value="{{ $courses->id }}">
+                    <input type="hidden" name="course_id" value="{{ $course->id }}">
                     <div>
                         <div class="input-field s12">
                             <input type="text" data-ng-model="name"  name="serial" data-validation="required">

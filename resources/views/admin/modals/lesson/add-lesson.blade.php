@@ -9,7 +9,7 @@
                 <h4>Add New lesson of {{ $section->section_name }}</h4>
                 <form class="s12" method="POST" action="{{ route('lesson-store') }}">
                     @csrf
-                    <input type="hidden" name="course_id" value="{{ $courses->id }}">
+                    <input type="hidden" name="course_id" value="{{ $course->id }}">
                     <input type="hidden" name="section_id" value="{{ $section->id }}">
 
                     <div class="input-field s12">

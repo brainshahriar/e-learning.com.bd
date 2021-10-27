@@ -79,47 +79,35 @@ color: #222;
 <div class="inn-title">
 <h4>Course Curricullum</h4>
 </div>
-
+@if(count($course->sections) > 0)
+@foreach($course->sections as $section)
     <div class="col-md-12">
-
-  @foreach ($sections as $section)
-
-        <div class="accordion" id="faq">
-            <div class="card">
-                <div class="card-header" id="faqhead1">
-                    <a href="#" class="btn btn-header-link" data-toggle="collapse" data-target="#faq1"
-                    aria-expanded="true" aria-controls="faq1">
-                {{ $section->serial }} : {{ $section->section_name }}
-                </a>
-            
+        <div class="accordion" id="accordionExample{{$section->id}}">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    {{ $section->serial }} : {{ $section->section_name }}
+                </button>
                 <a href="{{ url('admin/delete/'.$section->id) }}"  class="btn btn-danger pull-right" title="delete data" id="delete">Delete</a>
                 <button type="button" class="btn btn-primary pull-right"  data-toggle="modal" data-target="#AddLession">Edit</button>
                 <button type="button" class="btn btn-success pull-right"  data-toggle="modal" data-target="#AddLession{{ $section->id }}">ADD</button>
+              </h2>
+              @include('admin.modals.lesson.add-lesson')
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                @if(count($section->lessons) > 0)
+                @foreach($section->lessons as $lesson)
+                <div class="accordion-body">
+                    <button class="btn">{{ $lesson->lesson_title }}</button>
                 </div>
-                @include('admin.modals.lesson.add-lesson')
-                @foreach ($lessons as $lesson)
-                <div id="faq1" class="collapse show" aria-labelledby="faqhead1" data-parent="#faq">
-                    <div class="card-body">
-                        <div class="card-header" id="faqhead1">
-                            <a href="#" class="btn btn-success" data-toggle="collapse" data-target="#faq1"
-                            aria-expanded="true" aria-controls="faq1">
-                        
-                        
-                               {{ $lesson->lesson_title }}
-                       
-
-                        </a>
-                        <button type="button" class="btn btn-danger pull-right"  data-toggle="modal" data-target="#AddLession">Delete</button>
-                        </div>
-                    </div>
-                </div>
+                <button type="button" class="btn btn-danger pull-right"  data-toggle="modal" data-target="#AddLession">Delete</button>
                 @endforeach
+                @endif
+              </div>
             </div>
-        </div>
-                    
-  @endforeach
+          </div>
             </div>
-
+            @endforeach
+            @endif
 </div>
 </div>
 </div>
@@ -130,6 +118,7 @@ color: #222;
 
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 @endsection
 
 

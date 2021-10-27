@@ -145,9 +145,9 @@ class CourseController extends Controller
     public function lesson($course_id)
     {
         //$lessons=Lesson::where('section_id',$course_id)->get();
-        $sections=Section::where('course_id',$course_id)->get();
+      //  $sections=Section::where('course_id',$course_id)->get();
         $course= Course::with(['sections.lessons'])->where('id',$course_id)->first();
-        return view('admin.course.add-curriculum',compact('courses','sections','lessons'));
+        return view('admin.course.add-curriculum',compact('course'));
     }
     public function sectionStore(Request $request)
     {
