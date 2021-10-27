@@ -98,8 +98,8 @@ color: #222;
                 @foreach($section->lessons as $lesson)
                 <div class="accordion-body">
                     <button class="btn">{{ $lesson->lesson_title }}</button>
+                    <a href="{{ url('admin/delete/'.$lesson->id) }}"  class="btn btn-danger pull-right" title="delete data" id="delete">Delete</a>
                 </div>
-                <button type="button" class="btn btn-danger pull-right"  data-toggle="modal" data-target="#AddLession">Delete</button>
                 @endforeach
                 @endif
               </div>

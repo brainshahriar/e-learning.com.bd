@@ -64,6 +64,7 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     Route::get('delete/{course_id}',[CourseController::class,'deleteSection']);
     //lesson
     Route::post('lesson/store',[CourseController::class,'lessonStore'])->name('lesson-store');
+    Route::get('delete/{lesson_id}',[CourseController::class,'deleteLesson']);
 
 
 });

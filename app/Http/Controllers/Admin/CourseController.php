@@ -145,7 +145,7 @@ class CourseController extends Controller
     public function lesson($course_id)
     {
         //$lessons=Lesson::where('section_id',$course_id)->get();
-      //  $sections=Section::where('course_id',$course_id)->get();
+      //$sections=Section::where('course_id',$course_id)->get();
         $course= Course::with(['sections.lessons'])->where('id',$course_id)->first();
         return view('admin.course.add-curriculum',compact('course'));
     }
@@ -185,9 +185,16 @@ class CourseController extends Controller
             'preview' =>$request->preview,
             'created_at' => Carbon::now(),
            ]);
-
            $notification=array(
             'message'=>'Sub Catetory Added Success',
+            'alert-type'=>'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+    public function deleteLesson($lesson_id){
+        Lesson::findOrFail($lesson_id)->delete();
+            $notification=array(
+            'message'=>'Lesson Delete Success',
             'alert-type'=>'success'
         );
         return Redirect()->back()->with($notification);
