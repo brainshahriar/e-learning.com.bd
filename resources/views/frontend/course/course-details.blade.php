@@ -167,14 +167,22 @@
                             </div>
                             <div class="cor-p4">
                                 <h3>Lessons:</h3>
+                                @if(count($course->sections) > 0)
+                                @foreach($course->sections as $section)
                                 <ul class="collapsible" data-collapsible="accordion">
                                     <li>
-                                        <div class="collapsible-header active">1st year</div>
+                                        <div class="collapsible-header active">{{$section->section_name}}</div>
+                                        @if(count($section->lessons) > 0)
+                                        @foreach($section->lessons as $lesson)
                                         <div class="collapsible-body cor-tim-tab">
-                                            <h5>First Year Courses</h5>
+                                            <strong><i class="fa fa-play-circle"></i> {{$lesson->lesson_title}}</strong>
                                         </div>
+                                        @endforeach
+                                        @endif
                                     </li>
                                 </ul>
+                                @endforeach
+                                @endif
                             </div>
                             <div class="cor-p6">
                                 <h3>Student Reviews</h3>
