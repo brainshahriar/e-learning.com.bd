@@ -493,7 +493,7 @@
                         <div class="col-md-3"> <img src="{{ asset($course->course_image) }}" alt=""> </div>
                         <!--POPULAR COURSES: CONTENT-->
                         <div class="col-md-9 home-top-cour-desc">
-                            <a href="course-details.html">
+                            <a href="{{ url('course-details/'.$course->id.'/'.$course->course_slug) }}">
                                 <h3>{{ $course->course_name }}</h3>
                             </a>
                             <h4>{{ $course->subcategory->subcategory_name }}</h4>

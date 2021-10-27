@@ -18,4 +18,12 @@ class IndexController extends Controller
         $courses=Course::where('status',1)->orderBy('id','DESC')->get();
         return view('frontend.index',compact('categories','subcategories','courses'));
     }
+    public function courseDetails($course_id,$slug)
+    {
+        $categories=Category::orderBy('category_name','ASC')->get();
+        $courses=Course::findOrFail($course_id);
+        $subcategories=Subcategory::where('subcategory_name',$courses->id)->get();
+        $course= Course::with(['sections.lessons'])->where('id',$course_id)->first();
+        return view('frontend.course.course-details',compact('categories','course','subcategories','courses'));
+    }
 }

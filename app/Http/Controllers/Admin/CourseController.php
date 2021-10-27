@@ -191,8 +191,8 @@ class CourseController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
-    public function deleteLesson($lesson_id){
-        Lesson::findOrFail($lesson_id)->delete();
+    public function deleteLesson($id){
+        Lesson::findOrFail($id)->delete();
             $notification=array(
             'message'=>'Lesson Delete Success',
             'alert-type'=>'success'
