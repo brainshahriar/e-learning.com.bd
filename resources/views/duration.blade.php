@@ -12,15 +12,13 @@
             return "";
         }
     }
-    $video_url="https://www.youtube.com/watch?v=q2d-PwUISdQ";
+    $video_url="https://www.youtube.com/watch?v=rJFYm_55wDU";
     $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
     $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.getYouTubeVideoID
     ($video_url).'&key='.$api_key;
     
     $data=json_decode(file_get_contents($api_url));
 
-   
-     
     $time=$data->items[0]->contentDetails->duration;
 
 function covtime($time){

@@ -190,7 +190,7 @@
             return "";
         }
     }
-    $video_url="{{ $lesson->video_id }}";
+    $video_url=$lesson->video_id;
     $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
     $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.getYouTubeVideoID
     ($video_url).'&key='.$api_key;
