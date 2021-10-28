@@ -19,7 +19,7 @@ class CreateLessonsTable extends Migration
             $table->unsignedBigInteger('section_id');
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->string('video_type')->nullable();
-            $table->integer('video_id')->nullable();
+            $table->string('video_id')->nullable();
             $table->string('lesson_title')->nullable();
             $table->string('duration')->nullable();
             $table->string('preview')->nullable();

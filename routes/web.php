@@ -80,3 +80,7 @@ Route::group(['prefix'=>'user','middleware' =>['user','auth'],'namespace'=>'User
 //frontend routes
 
 Route::get('course-details/{course_id}/{slug}',[IndexController::class,'courseDetails']);
+
+
+
+Route::get('duration',[IndexController::class,'duration']);

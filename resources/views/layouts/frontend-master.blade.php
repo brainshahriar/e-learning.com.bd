@@ -24,7 +24,7 @@
     <link href="{{ asset('frontend') }}/css/style-mob.css" rel="stylesheet" />
     <link href="{{ asset('common') }}/imagecrop/ijaboCropTool.min.css" rel="stylesheet" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="stylesheet" href="{{ asset('venobox') }}/venobox/venobox.css" type="text/css" media="screen" />
     <title>@yield('title')</title>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -160,7 +160,7 @@
             </ul>
         </div>
     </section>
-
+@yield('scripts')
     <!--Import jQuery before materialize.js-->
     <script src="{{ asset('frontend') }}/js/main.min.js"></script>
     <script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
@@ -203,6 +203,19 @@
 
     <script src="{{ asset('frontend') }}/js/materialize.min.js"></script>
     <script src="{{ asset('frontend') }}/js/custom.js"></script>
+    <script type="text/javascript" src="{{ asset('venobox') }}/venobox/venobox.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+		$('.venobox').venobox({
+			closeColor: '#f4f4f4',
+			spinColor: '#f4f4f4',
+			arrowsColor: '#f4f4f4',
+			closeBackground: '#17191D',
+			overlayColor: 'rgba(23,25,29,0.8)'
+		}); 
+	});
+</script>
 </body>
 
 </html>
