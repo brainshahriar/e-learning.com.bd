@@ -25,15 +25,18 @@ parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );
 	    echo $timeFormat->format('i:s');
 }
 
-$date = '2018-03-26 11:20:35';
-$hours = '02:25:10';
+$a = array('00:20:02', '00:03:45','01:00:45');
+$h = $m = $s = 0;
+foreach ($a as $time) {
+    $time = new \DateTime($time);
+    $h += $time->format('H');
+    $m += $time->format('i');
+    $s += $time->format('s');
+}
 
-$d0 = strtotime(date('Y-m-d 00:00:00'));
-$d1 = strtotime(date('Y-m-d ').$hours);
+$interval = new DateInterval("PT{$h}H{$m}M{$s}S");
+echo $interval->format('%H:%I:%S');
 
-$sumTime = strtotime($date) + ($d1 - $d0);
-$new_time = date("H:i:s", $sumTime);
-echo $new_time;
 
 
 

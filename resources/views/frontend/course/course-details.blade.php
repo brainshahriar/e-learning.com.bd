@@ -23,16 +23,29 @@
                 
                 $timeFormat = new DateTime('1970-01-01');
                 $timeFormat->add(new DateInterval($time));
-                print_r($timeFormat->format('H:i:s'));
+                $x=$timeFormat->format('H:i:s');
+                //echo $x;
+$a = array('00:03:34','00:34:55');
+$h = $m = $s = 0;
+foreach ($a as $q) {
+    $q = new \DateTime($q);
+    $h += $q->format('H');
+    $m += $q->format('i');
+    $s += $q->format('s');
+}
 
+$interval = new DateInterval("PT{$h}H{$m}M{$s}S");
 
-            
 @endphp
+
 @endforeach
 @endif
 
 @endforeach
 @endif
+@php
+   echo $interval->format('%H:%I:%S'); 
+@endphp
 
     <!--SECTION START-->
     <section>
