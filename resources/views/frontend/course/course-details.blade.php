@@ -8,7 +8,31 @@
 <!--HEADER SECTION-->
 @include('frontend.inc.header')
 
+@if(count($course->sections) > 0)
+@foreach($course->sections as $section)
+        @if(count($section->lessons) > 0)
+        @foreach($section->lessons as $lesson)
+@php
+          
+                $video_url=$lesson->video_id;
+                $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
+                parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );     
+                $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.$my_array_of_vars['v'].'&key='.$api_key;                                         
+                $data=json_decode(file_get_contents($api_url));                                        
+                $time=$data->items[0]->contentDetails->duration;
+                
+                $timeFormat = new DateTime('1970-01-01');
+                $timeFormat->add(new DateInterval($time));
+                print_r($timeFormat->format('H:i:s'));
 
+
+            
+@endphp
+@endforeach
+@endif
+
+@endforeach
+@endif
 
     <!--SECTION START-->
     <section>
@@ -182,21 +206,32 @@
 
                                         $video_url=$lesson->video_id;
                                          $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
-                                        parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );     
+                                            parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );     
                                             $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.$my_array_of_vars['v'].'&key='.$api_key;
                                             
                                             $data=json_decode(file_get_contents($api_url));
                                         
                                             $time=$data->items[0]->contentDetails->duration;
+
                                         ?>
                                         <div class="collapsible-body cor-tim-tab">
                                             
                                             <a class="venobox" data-autoplay="true" data-vbtype="video" href="{{ $lesson->video_id }}" data-gall="myNewGallery">
                                                 <strong><i class="fa fa-play-circle"></i> {{$lesson->lesson_title}}</strong>
-                                            {{ $time }}
+                                            @php
+                                                 $timeFormat = new DateTime('1970-01-01');
+                                                $timeFormat->add(new DateInterval($time));
+                                                if (strlen($time)>8)
+                                                {
+                                                    echo $timeFormat->format('H:i:s');
+                                            }   else {
+                                                echo $timeFormat->format('i:s');
+                                            }
+                                            @endphp
                                                 </a> 
                                                 
                                         </div>
+                                        
                                         @endif
                                         @endif
                                         @endforeach
@@ -205,7 +240,7 @@
                                 </ul>
                                 @endforeach
                                 @endif
-                             
+
                             </div>
                             <div class="cor-p6">
                                 <h3>Student Reviews</h3>

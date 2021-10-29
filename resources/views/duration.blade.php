@@ -1,6 +1,6 @@
 <?php
 
-$video_url="https://www.youtube.com/watch?v=q2d-PwUISdQ";
+$video_url="https://www.youtube.com/watch?v=f5f9tRx4nLU&list=RD3eJMovcItXg&index=23";
  $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
 parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );
     
@@ -14,19 +14,27 @@ parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );
     
     $data=json_decode(file_get_contents($api_url));
 
-   
-     
     $time=$data->items[0]->contentDetails->duration;
 
-function covtime($time){
-    $start = new DateTime('@0'); // Unix epoch
-    $start->add(new DateInterval($time));
+    $timeFormat = new DateTime('1970-01-01');
+    $timeFormat->add(new DateInterval($time));
     if (strlen($time)>8)
     {
-    return $time=$start->format('g:i:s');
+        echo $timeFormat->format('H:i:s');
 }   else {
-	return $time=$start->format('i:s');
-}
+	    echo $timeFormat->format('i:s');
 }
 
-echo covtime($time);
+$date = '2018-03-26 11:20:35';
+$hours = '02:25:10';
+
+$d0 = strtotime(date('Y-m-d 00:00:00'));
+$d1 = strtotime(date('Y-m-d ').$hours);
+
+$sumTime = strtotime($date) + ($d1 - $d0);
+$new_time = date("H:i:s", $sumTime);
+echo $new_time;
+
+
+
+
