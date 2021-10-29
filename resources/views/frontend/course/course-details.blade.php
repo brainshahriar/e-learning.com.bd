@@ -178,12 +178,22 @@
                                         @foreach($section->lessons as $lesson)
                                         @if($lesson->preview==1)
                                         @if($lesson->video_type=="youtube")
+                                        <?php
 
+                                        $video_url=$lesson->video_id;
+                                         $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
+                                        parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );     
+                                            $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.$my_array_of_vars['v'].'&key='.$api_key;
+                                            
+                                            $data=json_decode(file_get_contents($api_url));
+                                        
+                                            $time=$data->items[0]->contentDetails->duration;
+                                        ?>
                                         <div class="collapsible-body cor-tim-tab">
                                             
                                             <a class="venobox" data-autoplay="true" data-vbtype="video" href="{{ $lesson->video_id }}" data-gall="myNewGallery">
                                                 <strong><i class="fa fa-play-circle"></i> {{$lesson->lesson_title}}</strong>
-                                            
+                                            {{ $time }}
                                                 </a> 
                                                 
                                         </div>
