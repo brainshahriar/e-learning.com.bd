@@ -24,10 +24,6 @@ class IndexController extends Controller
         $courses=Course::findOrFail($course_id);
         $subcategories=Subcategory::where('subcategory_name',$courses->id)->get();
         $course= Course::with(['sections.lessons'])->where('id',$course_id)->first();
-
-
-
-        
         return view('frontend.course.course-details',compact('categories','course','subcategories','courses'));
     }
     public function duration()

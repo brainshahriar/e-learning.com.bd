@@ -1,36 +1,39 @@
-<?php
-
-    function getYouTubeVideoID($url)
-    {
-        $queryString=parse_url($url,PHP_URL_QUERY);
-        parse_str($queryString,$params);
-        if(isset($params['v']) && strlen($params['v'])>0)
-        {
-            return $params['v'];
-        }
-        else {
-            return "";
-        }
-    }
-    $video_url="https://www.youtube.com/watch?v=rJFYm_55wDU";
-    $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
-    $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.getYouTubeVideoID
-    ($video_url).'&key='.$api_key;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube API</title>
+</head>
+<body>
+    YouTube Subscribers
+    <div id="subscriberCount"></div>
+    YouTube Video Views
+    <div id="viewCount"></div>
+    YouTube Video Count
+    <div id="videoCount"></div>
+    <script>
     
-    $data=json_decode(file_get_contents($api_url));
-
-    $time=$data->items[0]->contentDetails->duration;
-
-function covtime($time){
-    $start = new DateTime('@0'); // Unix epoch
-    $start->add(new DateInterval($time));
-    if (strlen($time)>8)
-    {
-    return $time=$start->format('g:i:s');
-}   else {
-	return $time=$start->format('i:s');
-}
-}
-
-echo covtime($time);
-
+    const APIKey = 'AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
+    const Userid = 'UCmxbJnfPv6LCFH9zLaqGKEg';
+    const subscriberCount= document.getElementById('subscriberCount');
+    const viewCount = document.getElementById('viewCount');
+    const videoCount = document.getElementById('videoCount');
+   
+    let getdata = () => {
+        fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${Userid}&key=${APIKey}`)
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            console.log(data);
+            subscriberCount.innerHTML = data["items"][0].statistics.subscriberCount;
+            viewCount.innerHTML = data["items"][0].statistics.viewCount;
+            videoCount.innerHTML = data["items"][0].statistics.videoCount;
+            
+        })
+    }
+   getdata();
+    </script>
+</body>
+</html>
