@@ -18,26 +18,42 @@ parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );
 
     $timeFormat = new DateTime('1970-01-01');
     $timeFormat->add(new DateInterval($time));
-    if (strlen($time)>8)
-    {
-        echo $timeFormat->format('H:i:s');
-}   else {
-	    echo $timeFormat->format('i:s');
+//     if (strlen($time)>8)
+//     {
+//         echo $timeFormat->format('H:i:s');
+// }   else {
+// 	    echo $timeFormat->format('i:s');
+// }
+
+$total = array('1:00:00','00:01:20');
+
+
+ $sum = strtotime('00:00:00');
+ $sum2=0;  
+ foreach ($total as $v){
+
+        $sum1=strtotime($v)-$sum;
+
+        $sum2 = $sum2+$sum1;
+    }
+
+    $sum3=$sum+$sum2;
+
+     echo date("H:i:s",$sum3);
+
+ 
+
+
+
+
+
+function ISO8601ToSeconds($ISO8601){
+    $interval = new \DateInterval($ISO8601);
+
+    return ($interval->d * 24 * 60 * 60) +
+        ($interval->h * 60 * 60) +
+        ($interval->i * 60) +
+        $interval->s;
 }
 
-$a = array('00:20:02', '00:03:45','01:00:45');
-$h = $m = $s = 0;
-foreach ($a as $time) {
-    $time = new \DateTime($time);
-    $h += $time->format('H');
-    $m += $time->format('i');
-    $s += $time->format('s');
-}
-
-$interval = new DateInterval("PT{$h}H{$m}M{$s}S");
-echo $interval->format('%H:%I:%S');
-
-
-
-
-
+echo ISO8601ToSeconds('PT3M34S');
