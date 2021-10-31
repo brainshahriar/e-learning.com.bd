@@ -29,10 +29,10 @@
                             <input type="text" data-ng-model="video_id"  name="video_id" data-validation="required">
                             <label>Video ID</label>
                         </div>
-                        <div class="input-field s12">
+                        {{-- <div class="input-field s12">
                             <input type="text" data-ng-model="duration"  name="duration" data-validation="required">
                             <label>Duration</label>
-                        </div>
+                        </div> --}}
                         <div class="input-field s12">
                             <select class="form-control"  name="preview">
                               <option value="0">No Preview</option>

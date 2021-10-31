@@ -7,52 +7,7 @@
 
 <!--HEADER SECTION-->
 @include('frontend.inc.header')
-@php
-    
-function ISO8601ToSeconds($ISO8601){
-    $interval = new \DateInterval($ISO8601);
 
-    return ($interval->d * 24 * 60 * 60) +
-        ($interval->h * 60 * 60) +
-        ($interval->i * 60) +
-        $interval->s;
-}
-@endphp
-@if(count($course->sections) > 0)
-@foreach($course->sections as $section)
-        @if(count($section->lessons) > 0)
-        @foreach($section->lessons as $lesson)
-@php
-
-                $video_url=$lesson->video_id;
-                $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
-                parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );
-                $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.$my_array_of_vars['v'].'&key='.$api_key;
-                $data=json_decode(file_get_contents($api_url));
-                $time=$data->items[0]->contentDetails->duration;
-                $x=ISO8601ToSeconds($time);
-                
-                // echo $time;
-                // $timeFormat = new DateTime('1970-01-01');
-                // $timeFormat->add(new DateInterval($time));
-                // $x=$timeFormat->format('H:i:s');
-                  echo $x;
-
-                  
-                
-
-
-@endphp
-
-@endforeach
-@endif
-
-@endforeach
-@endif
-
-@php
-     
-@endphp
 
     <!--SECTION START-->
     <section>

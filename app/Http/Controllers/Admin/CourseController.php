@@ -175,16 +175,47 @@ class CourseController extends Controller
     //store lesson
     public function lessonStore(Request $request)
     {
-        Lesson::insert([
-            'course_id' => $request->course_id,
-            'section_id' => $request->section_id,
-            'video_type' => $request->video_type,
-            'lesson_title' =>$request->lesson_title,
-            'video_id' =>$request->video_id,
-            'duration' =>$request->duration,
-            'preview' =>$request->preview,
-            'created_at' => Carbon::now(),
-           ]);
+
+        function ISO8601ToSeconds($ISO8601){
+            $interval = new \DateInterval($ISO8601);
+        
+            return ($interval->d * 24 * 60 * 60) +
+                ($interval->h * 60 * 60) +
+                ($interval->i * 60) +
+                $interval->s;
+        }
+
+        $course_id = $request->course_id;
+        $section_id = $request->section_id;
+    
+    
+        $video_type=$request->video_type;
+        $lesson_title=$request->lesson_title;
+        $video_id=$request->video_id;
+        $preview=$request->preview;
+
+
+           $video_url=$request->video_id;
+           $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
+           parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );
+           $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.$my_array_of_vars['v'].'&key='.$api_key;
+           $data=json_decode(file_get_contents($api_url));
+           $time=$data->items[0]->contentDetails->duration;
+            $x=ISO8601ToSeconds($time);  
+        // $duration=$request->$time;
+         
+
+            $course = new Lesson();
+            $course->course_id = $course_id;
+            $course->section_id =$section_id;
+
+            $course->video_type=$video_type;
+            $course->lesson_title=$lesson_title;
+            $course->video_id=$video_id;
+            $course->preview=$preview;
+            $course->duration = $x;
+            $course->save();
+
            $notification=array(
             'message'=>'Sub Catetory Added Success',
             'alert-type'=>'success'
