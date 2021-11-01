@@ -197,8 +197,9 @@ class CourseController extends Controller
 
            $video_url=$request->video_id;
            $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
-           parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );
-           $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.$my_array_of_vars['v'].'&key='.$api_key;
+           preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $match);
+            $video_url = $match[1];
+           $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.$video_url.'&key='.$api_key;
            $data=json_decode(file_get_contents($api_url));
            $time=$data->items[0]->contentDetails->duration;
             $x=ISO8601ToSeconds($time);  

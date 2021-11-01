@@ -39,7 +39,7 @@ $total = array('1:00:00','00:01:20');
 
     $sum3=$sum+$sum2;
 
-     echo date("H:i:s",$sum3);
+    // echo date("H:i:s",$sum3);
 
  
 
@@ -56,4 +56,27 @@ function ISO8601ToSeconds($ISO8601){
         $interval->s;
 }
 
-echo ISO8601ToSeconds('PT3M34S');
+//echo ISO8601ToSeconds('PT3M34S');
+
+$url="https://www.youtube.com/embed/yEJQpoHfw0s";
+
+preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+$youtube_id = $match[1];
+
+
+$api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.$youtube_id.'&key='.$api_key;
+    
+    $data=json_decode(file_get_contents($api_url));
+
+    $time=$data->items[0]->contentDetails->duration;
+
+    $timeFormat = new DateTime('1970-01-01');
+    $timeFormat->add(new DateInterval($time));
+    if (strlen($time)>8)
+     {
+         echo $timeFormat->format('H:i:s');
+ }   else {
+ 	    echo $timeFormat->format('i:s');
+ }
+
+ echo  $youtube_id;

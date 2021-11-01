@@ -8,7 +8,23 @@
 <!--HEADER SECTION-->
 @include('frontend.inc.header')
 
+@php
+$total_duration = $data;
+$H = floor($total_duration / 3600);
+$i = ($total_duration / 60) % 60;
+$s = $total_duration % 60; 
+@endphp 
 
+@php
+if($H==NULL)
+{
+echo sprintf("%02d:%02d", $i, $s);
+}
+else
+{
+echo sprintf("%02d:%02d:%02d", $H, $i, $s);
+}
+@endphp
     <!--SECTION START-->
     <section>
         <div class="container com-sp pad-bot-70 pg-inn">
@@ -166,7 +182,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="cor-p4">
+                            <div class="cor-p6">
+                                <div class="row">
+                                    
+                           <div class="col-md-8">
+
+                       
                                 <h3>Lessons:</h3>
                                 @if(count($course->sections) > 0)
                                 @foreach($course->sections as $section)
@@ -178,11 +199,11 @@
                                         @if($lesson->preview==1)
                                         @if($lesson->video_type=="youtube")
                                         <?php
-
                                         $video_url=$lesson->video_id;
                                          $api_key='AIzaSyCTmNKu-BRSEPoU_4lpG6NYnLo_MS5vc2w';
-                                            parse_str( parse_url( $video_url, PHP_URL_QUERY ), $my_array_of_vars );
-                                            $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.$my_array_of_vars['v'].'&key='.$api_key;
+                                         preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url, $match);
+                                            $video_url = $match[1];
+                                            $api_url='https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id='.$video_url.'&key='.$api_key;
 
                                             $data=json_decode(file_get_contents($api_url));
 
@@ -193,20 +214,22 @@
 
                                             <a class="venobox" data-autoplay="true" data-vbtype="video" href="{{ $lesson->video_id }}" data-gall="myNewGallery">
                                                 <strong><i class="fa fa-play-circle"></i> {{$lesson->lesson_title}}</strong>
-                                            @php
-                                                 $timeFormat = new DateTime('1970-01-01');
-                                                $timeFormat->add(new DateInterval($time));
-                                                if (strlen($time)>8)
-                                                {
-                                                    echo $timeFormat->format('H:i:s');
-                                            }   else {
-                                                echo $timeFormat->format('i:s');
-                                            }
-                                            @endphp
+                              
                                                 </a>
-
                                         </div>
-
+                                    </div>
+                                    <div class="col-md-4">
+                                        @php
+                                        $timeFormat = new DateTime('1970-01-01');
+                                       $timeFormat->add(new DateInterval($time));
+                                       if (strlen($time)>8)
+                                       {
+                                           echo $timeFormat->format('H:i:s');
+                                   }   else {
+                                       echo $timeFormat->format('i:s');
+                                   }
+                                   @endphp
+                                    </div>
                                         @endif
                                         @endif
                                         @endforeach
@@ -216,6 +239,7 @@
                                 @endforeach
                                 @endif
 
+                                </div>
                             </div>
                             <div class="cor-p6">
                                 <h3>Student Reviews</h3>
