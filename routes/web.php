@@ -57,7 +57,7 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     //active inactive
     Route::get('/inactive/{id}',[CourseController::class,'inactive']);
     Route::get('/active/{id}',[CourseController::class,'active']);
-
+ 
     //section
     Route::get('lesson/{course_id}',[CourseController::class,'lesson']);
     Route::post('section',[CourseController::class,'sectionStore'])->name('section-store');
@@ -83,4 +83,3 @@ Route::get('course-details/{course_id}/{slug}',[IndexController::class,'courseDe
 
 
 
-Route::get('duration',[IndexController::class,'duration']);

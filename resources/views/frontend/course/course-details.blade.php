@@ -174,33 +174,34 @@ $s = $total_duration % 60;
                                 </div>
                             </div>
                             <div class="cor-p6">
-                                <div class="row">
                                     
                          
 
                        
                                 <h3>Lessons:</h3>
-                                <h4>Total Duration : @php
-                                    if($H==NULL)
-                                    {
-                                    echo sprintf("%02d:%02d Hours", $i, $s);
-                                    }
-                                    else
-                                    {
-                                    echo sprintf("%02d:%02d:%02d Hours", $H, $i, $s);
-                                    }
-                                    @endphp</h4>
+                                <button class="btn btn-danger">
+                                    <h4>Total Duration : @php
+                                        if($H==NULL)
+                                        {
+                                        echo sprintf("%02d:%02d Hours", $i, $s);
+                                        }
+                                        else
+                                        {
+                                        echo sprintf("%02d:%02d:%02d Hours", $H, $i, $s);
+                                        }
+                                        @endphp</h4>
+                                </button>
+                                     <br>
                                     <br>
                                 @if(count($course->sections) > 0)
                                 @foreach($course->sections as $section)
-                                <div class="col-md-12">
-                                <ul class="collapsible" data-collapsible="accordion">
-           
-                                   
+                    
+                                <ul class="collapsible" data-collapsible="accordion">                   
                                     <li>
                                         <div class="collapsible-header active">{{$section->section_name}}
                                         
-                                        <button class="btn btn-primary pull-right">           @php
+                                        <button class="btn btn-primary pull-right">
+                                            @php
                                             $section_sum=App\Models\Lesson::where('section_id',$section->id)->sum('duration');
                                             $total_ = $section_sum;
                                             $Hours = floor($total_ / 3600);
@@ -231,16 +232,19 @@ $s = $total_duration % 60;
 
                                             <a class="venobox" data-autoplay="true" data-vbtype="video" href="{{ $lesson->video_id }}" data-gall="myNewGallery">
                                                 <strong><i class="fa fa-play-circle"></i> {{$lesson->lesson_title}}</strong>
-                                            @php
-                                                 $timeFormat = new DateTime('1970-01-01');
-                                                $timeFormat->add(new DateInterval($time));
-                                                if (strlen($time)>8)
-                                                {
-                                                    echo $timeFormat->format('H:i:s');
-                                            }   else {
-                                                echo $timeFormat->format('i:s');
-                                            }
-                                            @endphp
+                                                <button class="btn btn-sm pull-right">
+                                                    @php
+                                                    $timeFormat = new DateTime('1970-01-01');
+                                                   $timeFormat->add(new DateInterval($time));
+                                                   if (strlen($time)>8)
+                                                   {
+                                                       echo $timeFormat->format('H:i:s');
+                                               }   else {
+                                                   echo $timeFormat->format('i:s');
+                                               }
+                                               @endphp
+                                                </button>
+ 
                                                 </a>
                                         </div>
                                  
@@ -257,11 +261,9 @@ $s = $total_duration % 60;
 
                                
                          
-                            </div>
-                            <div class="col-md-4">
-                                    
-                            </div>
+                        
                             <div class="cor-p6">
+                                
                                 <h3>Student Reviews</h3>
                                 <div class="cor-p6-revi">
                                     <div class="cor-p6-revi-left">

@@ -30,8 +30,5 @@ class IndexController extends Controller
         $course= Course::with(['sections.lessons'])->where('id',$course_id)->first();
         return view('frontend.course.course-details',compact('categories','course','subcategories','courses','data'));
     }
-    public function duration()
-    {
-        return view('duration');
-    }
+
 }
