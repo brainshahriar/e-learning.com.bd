@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\Section;
 
 class IndexController extends Controller
 {
@@ -21,6 +22,7 @@ class IndexController extends Controller
     }
     public function courseDetails($course_id,$slug)
     {
+       
         $data=Lesson::where('course_id',$course_id)->sum('duration');
         $categories=Category::orderBy('category_name','ASC')->get();
         $courses=Course::findOrFail($course_id);

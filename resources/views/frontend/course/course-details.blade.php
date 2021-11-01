@@ -180,7 +180,7 @@ $s = $total_duration % 60;
 
                        
                                 <h3>Lessons:</h3>
-                                <h4>Total Duration :@php
+                                <h4>Total Duration : @php
                                     if($H==NULL)
                                     {
                                     echo sprintf("%02d:%02d Hours", $i, $s);
@@ -195,9 +195,22 @@ $s = $total_duration % 60;
                                 @foreach($course->sections as $section)
                                 <div class="col-md-12">
                                 <ul class="collapsible" data-collapsible="accordion">
+           
                                    
                                     <li>
-                                        <div class="collapsible-header active">{{$section->section_name}}</div>
+                                        <div class="collapsible-header active">{{$section->section_name}}
+                                        
+                                        <button class="btn btn-primary pull-right">           @php
+                                            $section_sum=App\Models\Lesson::where('section_id',$section->id)->sum('duration');
+                                            $total_ = $section_sum;
+                                            $Hours = floor($total_ / 3600);
+                                            $Minuites = ($total_ / 60) % 60;
+                                            $Seconds = $total_ % 60; 
+                                            echo sprintf("%02d:%02d:%02d Hours", $Hours, $Minuites, $Seconds);
+                                            @endphp</button>
+                                        </div>
+                                        
+         
                                         @if(count($section->lessons) > 0)
                                         @foreach($section->lessons as $lesson)
                                         @if($lesson->preview==1)
