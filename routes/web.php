@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\UserEnrollController;
 
 use App\Http\Controllers\User\UserController;
 
@@ -67,7 +68,7 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
     Route::get('delete-lesson/{id}',[CourseController::class,'deleteLesson']);
 
     //enroll Permission
-    Route::get('user/enroll',[UserController::class,'index'])->name('user.dashboard');
+    Route::get('user/enroll',[UserEnrollController::class,'index'])->name('user-enroll');
 
 });
 
