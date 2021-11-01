@@ -40,7 +40,7 @@ active
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->role->name }}</td>
-                                        <td>hhh</td>
+                                        <td>{{ $user->course->course_name }}</td>
                                         <td>
                                             <a  class="btn btn-primary" title="Enroll" data-toggle="modal" data-target="#Enroll{{ $user->id }}">Enroll</a>
                                             <a href="{{ url('admin/category/delete/'.$user->id) }}" id="delete" class="btn btn-danger" title="delete data" id="delete">Delete</a>

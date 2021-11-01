@@ -7,47 +7,36 @@
                 <a href="#" class="pop-close" data-dismiss="modal"><img src="{{ asset('frontend') }}/images/cancel.png" alt="" />
                 </a>
                 <h4>Enrollment</h4>
-                <form class="s12" method="POST" action="{{ route('lesson-store') }}">
+                <form class="s12" method="POST" action="{{ route('enroll-store') }}">
                     @csrf
-                    {{-- <input type="hidden" name="course_id" value="{{ $course->id }}"> --}}
-
+                    <input type="text" value="{{ $user->id }}" name="user_id">
                     <div class="row">
                         <div class="input-field col s12">
-                    <select class="form-control select2-show-search" data-placeholder="Select Course" name="category_id" data-validation="required">
+                    <select class="form-control select2-show-search" data-placeholder="Select Course" name="course_id" data-validation="required">
                       <option label="Select Course"></option>
                       @foreach ($courses as $course)    
                       <option value="{{ $course->id }}">{{ ucwords($course->course_name) }}</option>
                       @endforeach
+                      @error('course_id')
+                           <span class="text-danger">{{ $message }}</span>
+                      @enderror
                     </select>
-                    @error('category_id')
-                    <span class="text-danger">{{ $message }}</span>
-                  @enderror
                         </div>
                     </div>
                
                     <div>
                         <div class="input-field s12">
-                            <input type="text" data-ng-model="lesson_title"  name="lesson_title" data-validation="required">
-                            <label>Lesson Title</label>
+                            <input type="number" data-ng-model="price"  name="price" >
+                            <label>Price</label>
                         </div>
                         <div class="input-field s12">
-                            <input type="text" data-ng-model="video_id"  name="video_id" data-validation="required">
-                            <label>Video ID</label>
+                            <input type="text" data-ng-model="access"  name="access" data-validation="required">
+                            <label>Access</label>
                         </div>
-                        {{-- <div class="input-field s12">
-                            <input type="text" data-ng-model="duration"  name="duration" data-validation="required">
-                            <label>Duration</label>
-                        </div> --}}
-                        <div class="input-field s12">
-                            <select class="form-control"  name="preview">
-                              <option value="0">No Preview</option>
-                              <option value="1">Preview</option>
-                            </select>
-                                </div>
                     </div>
                     <div>
                         <div class="input-field s4">
-                            <button type="submit" class="btn btn-primary">Upload</button>     
+                            <button type="submit" class="btn btn-primary">Submit</button>     
                          </div>
                     </div>
                 </form>

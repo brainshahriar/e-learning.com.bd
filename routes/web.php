@@ -69,6 +69,7 @@ Route::group(['prefix'=>'admin','middleware' =>['admin','auth'],'namespace'=>'Ad
 
     //enroll Permission
     Route::get('user/enroll',[UserEnrollController::class,'index'])->name('user-enroll');
+    Route::post('enroll/store',[UserEnrollController::class,'store'])->name('enroll-store');
 
 });
 
