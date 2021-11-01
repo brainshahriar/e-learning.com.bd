@@ -15,16 +15,7 @@ $i = ($total_duration / 60) % 60;
 $s = $total_duration % 60; 
 @endphp 
 
-@php
-if($H==NULL)
-{
-echo sprintf("%02d:%02d", $i, $s);
-}
-else
-{
-echo sprintf("%02d:%02d:%02d", $H, $i, $s);
-}
-@endphp
+
     <!--SECTION START-->
     <section>
         <div class="container com-sp pad-bot-70 pg-inn">
@@ -185,13 +176,26 @@ echo sprintf("%02d:%02d:%02d", $H, $i, $s);
                             <div class="cor-p6">
                                 <div class="row">
                                     
-                           <div class="col-md-8">
+                         
 
                        
                                 <h3>Lessons:</h3>
+                                <h4>Total Duration :@php
+                                    if($H==NULL)
+                                    {
+                                    echo sprintf("%02d:%02d Hours", $i, $s);
+                                    }
+                                    else
+                                    {
+                                    echo sprintf("%02d:%02d:%02d Hours", $H, $i, $s);
+                                    }
+                                    @endphp</h4>
+                                    <br>
                                 @if(count($course->sections) > 0)
                                 @foreach($course->sections as $section)
+                                <div class="col-md-12">
                                 <ul class="collapsible" data-collapsible="accordion">
+                                   
                                     <li>
                                         <div class="collapsible-header active">{{$section->section_name}}</div>
                                         @if(count($section->lessons) > 0)
@@ -214,32 +218,35 @@ echo sprintf("%02d:%02d:%02d", $H, $i, $s);
 
                                             <a class="venobox" data-autoplay="true" data-vbtype="video" href="{{ $lesson->video_id }}" data-gall="myNewGallery">
                                                 <strong><i class="fa fa-play-circle"></i> {{$lesson->lesson_title}}</strong>
-                              
+                                            @php
+                                                 $timeFormat = new DateTime('1970-01-01');
+                                                $timeFormat->add(new DateInterval($time));
+                                                if (strlen($time)>8)
+                                                {
+                                                    echo $timeFormat->format('H:i:s');
+                                            }   else {
+                                                echo $timeFormat->format('i:s');
+                                            }
+                                            @endphp
                                                 </a>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        @php
-                                        $timeFormat = new DateTime('1970-01-01');
-                                       $timeFormat->add(new DateInterval($time));
-                                       if (strlen($time)>8)
-                                       {
-                                           echo $timeFormat->format('H:i:s');
-                                   }   else {
-                                       echo $timeFormat->format('i:s');
-                                   }
-                                   @endphp
-                                    </div>
+                                 
                                         @endif
                                         @endif
                                         @endforeach
                                         @endif
                                     </li>
+                           
                                 </ul>
+                            </div>
                                 @endforeach
                                 @endif
 
-                                </div>
+                               
+                         
+                            </div>
+                            <div class="col-md-4">
+                                    
                             </div>
                             <div class="cor-p6">
                                 <h3>Student Reviews</h3>
