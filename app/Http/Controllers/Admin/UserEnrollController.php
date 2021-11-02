@@ -13,11 +13,13 @@ class UserEnrollController extends Controller
 {
     public function index()
     {
-        $enrolls=Enroll::all();
-        return view('admin.user.user-list',compact('enrolls'));
+        $users=User::all();
+        $courses=Course::all();
+        return view('admin.user.user-list',compact('courses','users'));
     }
     public function store(Request $request)
     {
+        
         $request->validate([
             'course_id'=>'required|unique:courses,course_name',
         ]); 

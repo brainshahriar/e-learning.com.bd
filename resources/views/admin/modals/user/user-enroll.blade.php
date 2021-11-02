@@ -2,6 +2,7 @@
     <!-- LOGIN SECTION -->
     <div id="Enroll{{ $user->id }}" class="modal fade" role="dialog">
         <div class="log-in-pop">
+
             <div class="log-in-pop-right">
                 <a href="#" class="pop-close" data-dismiss="modal"><img src="{{ asset('frontend') }}/images/cancel.png" alt="" />
                 </a>
