@@ -7,12 +7,19 @@ use Illuminate\Http\Request;
 use Auth;
 use Image;
 use App\Models\User;
+use App\Models\Enroll;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('user.home');
+        if (Auth::check()) {
+            $users= User::with('enroll')->where('id',Auth::id())->first();
+              return view('user.home',compact('users'));
+          }else {
+            return Redirect('login');
+          }
+        
     }
     //profile picture
     public function updatePicture(Request $request)

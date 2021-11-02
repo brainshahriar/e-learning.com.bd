@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Course;
+use App\Models\Enroll;
 
 class User extends Authenticatable
 {
@@ -61,5 +62,9 @@ class User extends Authenticatable
     public function course()
     {
         return $this->hasMany(Course::class,'course_id');
+    }
+    public function enroll()
+    {
+        return $this->hasMany(Enroll::class);
     }
 }
