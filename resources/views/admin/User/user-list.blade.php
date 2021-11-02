@@ -40,7 +40,13 @@ active
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->role->name }}</td>
-                                        <td>CSE</td>
+                                        <td>
+                                            @if(count($user->enroll) > 0)
+                                            @foreach($user->enroll as $enrolls)
+                                                <button class="btn btn-sm">{{$enrolls->course->course_name}}</button>
+                                            @endforeach
+                                            @endif
+                                        </td>
                                         <td>
                                             <a  class="btn btn-primary" title="Enroll" data-toggle="modal" data-target="#Enroll{{ $user->id }}">Enroll</a>
                                             <a href="{{ url('admin/category/delete/'.$user->id) }}" id="delete" class="btn btn-danger" title="delete data" id="delete">Delete</a>

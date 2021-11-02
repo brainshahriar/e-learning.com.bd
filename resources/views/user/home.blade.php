@@ -59,7 +59,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="list-mig-like-com com-mar-bot-30">
-                                            <div class="list-mig-lc-img"> <img src="{{ asset('frontend') }}/images/course/3.jpg" alt=""> <span class="home-list-pop-rat list-mi-pr">Duration:150 Days</span> </div>
+                                            <div class="list-mig-lc-img"> <img src="{{ asset($item->course->course_image)}}" alt=""> <span class="home-list-pop-rat list-mi-pr">Duration:150 Days</span> </div>
                                             <div class="list-mig-lc-con">
                                                 <h5>{{ $item->course->course_name }}</h5>
                                                 <p>Illinois City,</p>

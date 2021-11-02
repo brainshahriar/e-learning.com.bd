@@ -36,7 +36,7 @@ class CourseController extends Controller
 
         $image = $request->file('course_image');
                 $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-                Image::make($image)->resize(917,1000)->save('uploads/course/image/'.$name_gen);
+                Image::make($image)->save('uploads/course/image/'.$name_gen);
                 $save_url = 'uploads/course/image/'.$name_gen;
     
                     Course::insert([
@@ -99,7 +99,7 @@ class CourseController extends Controller
         unlink($old_img);
         $image = $request->file('course_image');
         $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(917,1000)->save('uploads/course/image/'.$name_gen);
+        Image::make($image)->save('uploads/course/image/'.$name_gen);
         $save_url = 'uploads/course/image/'.$name_gen;
 
         Course::findOrFail($course_id)->update([
