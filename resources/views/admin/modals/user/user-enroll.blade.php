@@ -2,14 +2,13 @@
     <!-- LOGIN SECTION -->
     <div id="Enroll{{ $user->id }}" class="modal fade" role="dialog">
         <div class="log-in-pop">
-
             <div class="log-in-pop-right">
                 <a href="#" class="pop-close" data-dismiss="modal"><img src="{{ asset('frontend') }}/images/cancel.png" alt="" />
                 </a>
                 <h4>Enrollment</h4>
                 <form class="s12" method="POST" action="{{ route('enroll-store') }}">
                     @csrf
-                    <input type="text" value="{{ $user->id }}" name="user_id">
+                    <input type="hidden" value="{{ $user->id }}" name="user_id">
                     <div class="row">
                         <div class="input-field col s12">
                     <select class="form-control select2-show-search" data-placeholder="Select Course" name="course_id" data-validation="required">

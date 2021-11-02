@@ -31,21 +31,21 @@ active
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($enrolls as $enroll)
               
                                     <tr>
                                         <td>{{$loop->index+1}}</span>
                                         </td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->phone }}</td>
-                                        <td>{{ $user->role->name }}</td>
-                                        <td>{{ $user->course->course_name }}</td>
+                                        <td>{{ $enroll->user->name }}</td>
+                                        <td>{{ $enroll->user->email }}</td>
+                                        <td>{{ $enroll->user->phone }}</td>
+                                        <td>{{ $enroll->user->role->name}}</td>
+                                        <td>{{ $enroll->course->course_name }}</td>
                                         <td>
-                                            <a  class="btn btn-primary" title="Enroll" data-toggle="modal" data-target="#Enroll{{ $user->id }}">Enroll</a>
-                                            <a href="{{ url('admin/category/delete/'.$user->id) }}" id="delete" class="btn btn-danger" title="delete data" id="delete">Delete</a>
+                                            <a  class="btn btn-primary" title="Enroll" data-toggle="modal" data-target="#Enroll{{ $enroll->id }}">Enroll</a>
+                                            <a href="{{ url('admin/category/delete/'.$enroll->id) }}" id="delete" class="btn btn-danger" title="delete data" id="delete">Delete</a>
                                         </td>
-                                        @include('admin.modals.user.user-enroll')
+                                        {{-- @include('admin.modals.user.user-enroll') --}}
                                     </tr>
                                     @endforeach
                                 </tbody>
